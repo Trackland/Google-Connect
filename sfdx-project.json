@@ -12,6 +12,7 @@
   "namespace": null,
   "sourceApiVersion": "55.0",
   "packageAliases": {
-    "Trackland Google Connect": "0HoRQ00000000G90AI"
+    "Trackland Google Connect": "0HoRQ00000000G90AI",
+    "Trackland Google Connect@0.1.0-1": "04tRQ000000076LYAQ"
   }
 }
