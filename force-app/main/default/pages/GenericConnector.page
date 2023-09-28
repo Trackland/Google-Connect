@@ -1,0 +1,6 @@
+<apex:page controller="GenericConnectorController">
+    <apex:form id="theForm">
+      <apex:commandButton action="{!doGetAuthorizationCode}" value="Authorize with Google" rendered="{!code == null}" />
+      <apex:commandButton action="{!doGetAccessToken}" value="Complete Access Token" reRender="theForm" rendered="{!code <> null}" />
+    </apex:form>
+</apex:page>
