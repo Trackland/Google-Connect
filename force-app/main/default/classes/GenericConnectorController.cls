@@ -16,13 +16,6 @@ public class GenericConnectorController {
     return authorizationCodepageRequest(googleCred, authScope);
   }
 
-  public static void createGoogleToken(){
-    Google_Token__c googleToken = new Google_Token__c();
-    googleToken.Name = 'Google Product';
-    // googleToken.Account__c = accId;
-    insert googleToken;
-  }
-
   public static PageReference authorizationCodepageRequest(Google_Credential__mdt googleCred, String authScope){
     String requestBody = '';
     requestBody = googleCred.OAuth_EndPoint__c+'?scope='+authScope+'&';
@@ -115,8 +108,7 @@ public class GenericConnectorController {
       return TL_GoogleApiCalls.callGoogleApiFromHttp(endpoint, method, body, httpReq, first).getBody();
     } catch(Exception e){
       if(Test.isRunningTest()) return '{"expires_in": 123}';
-      if(error != null) throw new ErrorException(error);
-      throw new ErrorException(e.getMessage());
+      throw new ErrorException(error != null ? error :e.getMessage());
     }
   }
 

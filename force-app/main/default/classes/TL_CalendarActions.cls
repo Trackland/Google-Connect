@@ -3,8 +3,8 @@ public with sharing class TL_CalendarActions {
 
   public static Object[] ListCalendars(){
     String endPoint = api+'/users/me/calendarList?minAccessRole=owner';
-    if(Test.isRunningTest()) return calendarsMock;
     HttpResponse res = TL_GoogleApiCalls.callGoogleApi(endPoint, 'GET', null, true);
+    if(Test.isRunningTest()) return calendarsMock;
     Map<String, Object> result = (Map<String, Object>)JSON.deserializeUntyped(res.getBody());
     return (Object[])result.get('items');
   }
