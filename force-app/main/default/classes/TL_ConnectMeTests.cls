@@ -19,4 +19,8 @@ public class TL_ConnectMeTests {
     TL_CalendarActions.syncCalendars();
   }
 
+  @isTest
+  static void apiCall_Test(){
+    TL_GoogleApiCalls.callGoogleApi('endpoint', 'GET', 'null', true);
+  }
 }
