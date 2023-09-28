@@ -5,7 +5,7 @@
       "default": true,
       "package": "Trackland Google Connect",
       "versionName": "ver 0.1",
-      "versionNumber": "0.1.0.NEXT",
+      "versionNumber": "0.1.2.NEXT",
       "versionDescription": "Trackland Google Connect"
     }
   ],
@@ -13,6 +13,8 @@
   "sourceApiVersion": "55.0",
   "packageAliases": {
     "Trackland Google Connect": "0HoRQ00000000G90AI",
-    "Trackland Google Connect@0.1.0-1": "04tRQ000000076LYAQ"
+    "Trackland Google Connect@0.1.0-1": "04tRQ000000076LYAQ",
+    "Trackland Google Connect@0.1.1-1": "04tRQ00000007BBYAY",
+    "Trackland Google Connect@0.1.2-2": "04tRQ00000007EPYAY"
   }
 }
