@@ -1,1 +1,17 @@
-{"packageDirectories": [{"path": "force-app", "default": true}], "namespace": null, "sourceApiVersion": "55.0"}
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true,
+      "package": "Trackland Google Connect",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "versionDescription": "Trackland Google Connect"
+    }
+  ],
+  "namespace": null,
+  "sourceApiVersion": "55.0",
+  "packageAliases": {
+    "Trackland Google Connect": "0HoRQ00000000G90AI"
+  }
+}
