@@ -1,17 +1,16 @@
 public with sharing class TL_CalendarActions {
   private static String api = 'https://www.googleapis.com/calendar/v3';
 
-  public static Object[] ListCalendars(){
+  public static Object[] ListCalendars(Google_Token__c token){
     String endPoint = api+'/users/me/calendarList?minAccessRole=owner';
+    HttpResponse res = TL_GoogleApiCalls.preCallGoogleApi(endPoint, 'GET', null, true, token);
     if(Test.isRunningTest()) return calendarsMock;
-    HttpResponse res = TL_GoogleApiCalls.callGoogleApi(endPoint, 'GET', null, true);
     Map<String, Object> result = (Map<String, Object>)JSON.deserializeUntyped(res.getBody());
     return (Object[])result.get('items');
   }
 
-  @InvocableMethod
-  public static void syncCalendars(){
-    Object[] calendarsGO = ListCalendars();
+  public static void syncCalendars(Google_Token__c token){
+    Object[] calendarsGO = ListCalendars(token);
     List<Map<String, Object>> calendarsG = new List<Map<String, Object>>();
     String[] googleIds = new List<String>();
     for(Object calendarO: calendarsGO){
@@ -31,13 +30,17 @@ public with sharing class TL_CalendarActions {
       String id = (String)calendar.get('id');
       String title = (String)calendar.get('summary');
       Boolean isDefault = (Boolean)calendar.get('primary');
-      // String description = (String)calendar.get('description');
       if(calendarSFMap.get(id) != null) continue;
-      GoogleCalendar__c newCalendar = new GoogleCalendar__c(GoogleId__c=id, Name=title);
+      GoogleCalendar__c newCalendar = new GoogleCalendar__c(GoogleId__c=id, Name=title, GoogleToken__c=token.Id);
       if (isDefault != null && calendarSFMap.get('Default') == null) newCalendar.Default__c = isDefault;
       toInsert.add(newCalendar);
     }
     insert toInsert;
+  }
+  
+  @InvocableMethod
+  public static void syncCalendarsInvocable(Google_Token__c[] tokens){
+    for(Google_Token__c token: tokens) syncCalendars(token);
   }
 
   public class ErrorException extends Exception {}

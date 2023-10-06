@@ -1,6 +1,6 @@
 public with sharing class TL_GoogleApiCalls {
   
-  public static HttpResponse callGoogleApiFromHttp(String endpoint, String method, String body, HttpRequest httpReq, boolean first){
+  public static HttpResponse callGoogleApiFromHttp(String endpoint, String method, String body, HttpRequest httpReq, boolean first, Google_Token__c googleToken){
     httpReq.setEndpoint(endpoint);
     httpReq.setMethod(method);
     if(body != null) httpReq.setBody(body);
@@ -16,7 +16,7 @@ public with sharing class TL_GoogleApiCalls {
     }
 
     if(res.getStatusCode() == 401 && first) {
-      Google_Token__c token = GenericConnectorController.doRefreshTokenStatic();
+      Google_Token__c token = GenericConnectorController.doRefreshTokenStatic(googleToken);
       httpReq.setHeader('Authorization','Bearer '+token.Access_Token__c);
       if(!Test.isRunningTest()) res = http.send(httpReq);
       update token;
@@ -26,14 +26,11 @@ public with sharing class TL_GoogleApiCalls {
     return res;
   }
 
-  public static HttpResponse callGoogleApi(String endpoint, String method, String body, Boolean first){
-    Google_Token__c token;
-    if(Test.isRunningTest()) token = new Google_Token__c(Access_Token__c='123');
-    else token = [SELECT Id, Access_Token__c FROM Google_Token__c WHERE Name='Google Product'];
+  public static HttpResponse callGoogleApi(String endpoint, String method, String body, Boolean first, Google_Token__c token){
     HttpRequest httpReq = new HttpRequest();
     httpReq.setHeader('Content-Type', 'application/json');
     httpReq.setHeader('Authorization','Bearer '+token.Access_Token__c);
-    return callGoogleApiFromHttp(endpoint, method, body, httpReq, first);
+    return callGoogleApiFromHttp(endpoint, method, body, httpReq, first, token);
   }
 
   public static void apiError(HttpResponse res){
@@ -45,6 +42,15 @@ public with sharing class TL_GoogleApiCalls {
     errorMessage += ' '+res.getBody();
     if(res.getStatusCode() == 401) errorMessage = 'Refresh token is necesary';
     throw new ErrorException(errorMessage);
+  }
+
+  public static HttpResponse preCallGoogleApi(String endpoint, String method, String body, Boolean first, Google_Token__c token){
+    if(!Test.isRunningTest()) return callGoogleApi(endpoint, method, body, first, token);
+    HttpResponse res = new HttpResponse();
+    res.setStatus('200');
+    res.setStatusCode(200);
+    res.setBody('{}');
+    return res;
   }
 
   public class ErrorException extends Exception {}

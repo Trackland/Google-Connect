@@ -4,17 +4,28 @@
       "path": "force-app",
       "default": true,
       "package": "Trackland Google Connect",
-      "versionName": "ver 0.1",
-      "versionNumber": "0.1.2.NEXT",
-      "versionDescription": "Trackland Google Connect"
+      "versionName": "ver 0.2",
+      "versionNumber": "0.2.1.NEXT"
     }
   ],
-  "namespace": null,
+  "name": "Trackland Google Connect",
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "55.0",
   "packageAliases": {
     "Trackland Google Connect": "0HoRQ00000000G90AI",
     "Trackland Google Connect@0.1.0-1": "04tRQ000000076LYAQ",
     "Trackland Google Connect@0.1.1-1": "04tRQ00000007BBYAY",
-    "Trackland Google Connect@0.1.2-2": "04tRQ00000007EPYAY"
+    "Trackland Google Connect@0.1.2-2": "04tRQ00000007EPYAY",
+    "Trackland Google Connect@0.1.3-1": "04tRQ00000007G1YAI",
+    "Trackland Google Connect@0.1.3-2": "04tRQ00000007RJYAY",
+    "Trackland Google Connect@0.1.4-1": "04tRQ00000007UXYAY",
+    "Trackland Google Connect@0.1.4-2": "04tRQ00000009EbYAI",
+    "Trackland Google Connect@0.1.5-1": "04tRQ00000009GDYAY",
+    "Trackland Google Connect@0.1.6-1": "04tRQ00000009HpYAI",
+    "Trackland Google Connect@0.1.7-1": "04tRQ00000009L3YAI",
+    "Trackland Google Connect@0.1.8-1": "04tRQ00000009RVYAY",
+    "Trackland Google Connect@0.2.0-1": "04tRQ00000009zNYAQ",
+    "Trackland Google Connect@0.2.1-1": "04tRQ0000000A0zYAE"
   }
 }
