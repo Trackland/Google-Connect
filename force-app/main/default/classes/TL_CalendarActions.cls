@@ -9,7 +9,9 @@ public with sharing class TL_CalendarActions {
     return (Object[])result.get('items');
   }
 
-  public static void syncCalendars(Google_Token__c token){
+  @Future(callout=true)
+  public static void syncCalendars(String tokenId){
+    Google_Token__c token = [SELECT Id, Access_Token__c, Refresh_Token__c FROM Google_Token__c WHERE Id = :tokenId];
     Object[] calendarsGO = ListCalendars(token);
     List<Map<String, Object>> calendarsG = new List<Map<String, Object>>();
     String[] googleIds = new List<String>();
@@ -40,7 +42,7 @@ public with sharing class TL_CalendarActions {
   
   @InvocableMethod
   public static void syncCalendarsInvocable(Google_Token__c[] tokens){
-    for(Google_Token__c token: tokens) syncCalendars(token);
+    for(Google_Token__c token: tokens) syncCalendars(token.Id);
   }
 
   public class ErrorException extends Exception {}

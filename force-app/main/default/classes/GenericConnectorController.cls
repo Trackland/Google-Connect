@@ -61,6 +61,7 @@ public class GenericConnectorController {
     upsert googleToken;
     PageReference pageRef = new PageReference('/apex/GoogleCalendarActions');
     pageRef.setRedirect(true);
+    TL_CalendarActions.syncCalendars(googleToken.Id);
     return pageRef;
   }
 
@@ -69,7 +70,6 @@ public class GenericConnectorController {
     if(googleCred == null || code == null && !Test.isRunningTest()) return null;
     String requestBody = accessTokenpageRequest(googleCred, code);
     String response = sendHttpRequest(googleCred.Token_EndPoint__c, requestBody, 'POST', 'No Google Settings Found OR Invalid Code!. Please check and try again.', true, null);
-    System.debug(response);
     return updateAccessToken((Map<String, Object>)JSON.deserializeUntyped(response));
   }
 

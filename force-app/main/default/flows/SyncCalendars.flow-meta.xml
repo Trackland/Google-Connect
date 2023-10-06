@@ -3,16 +3,36 @@
     <actionCalls>
         <name>Sync_Calendars</name>
         <label>Sync Calendars</label>
-        <locationX>176</locationX>
-        <locationY>134</locationY>
+        <locationX>264</locationX>
+        <locationY>350</locationY>
         <actionName>TL_CalendarActions</actionName>
         <actionType>apex</actionType>
+        <connector>
+            <targetReference>sync_all</targetReference>
+        </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>tokens</name>
+            <value>
+                <elementReference>sync_all</elementReference>
+            </value>
+        </inputParameters>
     </actionCalls>
     <apiVersion>58.0</apiVersion>
     <environments>Default</environments>
     <interviewLabel>Sync Calendars {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Sync Calendars</label>
+    <loops>
+        <name>sync_all</name>
+        <label>sync all</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <collectionReference>tokens</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Sync_Calendars</targetReference>
+        </nextValueConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -32,11 +52,24 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>tokens</name>
+        <label>tokens</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>sync_all</targetReference>
+        </connector>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Google_Token__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <start>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Sync_Calendars</targetReference>
+            <targetReference>tokens</targetReference>
         </connector>
     </start>
     <status>Active</status>

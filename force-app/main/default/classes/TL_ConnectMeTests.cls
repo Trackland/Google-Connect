@@ -20,7 +20,7 @@ public class TL_ConnectMeTests {
   @isTest
   static void calendarActions(){
     Google_Token__c token = [SELECT Id, Refresh_Token__c FROM Google_Token__c LIMIT 1];
-    TL_CalendarActions.syncCalendars(token);
+    TL_CalendarActions.syncCalendars(token.Id);
   }
 
   @isTest
