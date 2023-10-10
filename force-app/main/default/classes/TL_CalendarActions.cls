@@ -42,6 +42,7 @@ public with sharing class TL_CalendarActions {
   
   @InvocableMethod
   public static void syncCalendarsInvocable(Google_Token__c[] tokens){
+    for(Google_Token__c token: tokens) System.enqueueJob(new GenericConnectorController.TokenManagement(token.Id));
     for(Google_Token__c token: tokens) syncCalendars(token.Id);
   }
 

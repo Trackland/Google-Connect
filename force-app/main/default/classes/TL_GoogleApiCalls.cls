@@ -15,13 +15,6 @@ public with sharing class TL_GoogleApiCalls {
       res.setBody(body);
     }
 
-    // if(res.getStatusCode() == 401 && first) {
-    //   Google_Token__c token = GenericConnectorController.doRefreshTokenStatic(googleToken);
-    //   httpReq.setHeader('Authorization','Bearer '+token.Access_Token__c);
-    //   if(!Test.isRunningTest()) res = http.send(httpReq);
-    //   update token;
-    // }
-
     apiError(res);
     return res;
   }

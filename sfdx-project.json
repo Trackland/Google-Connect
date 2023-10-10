@@ -5,7 +5,7 @@
       "default": true,
       "package": "Trackland Google Connect",
       "versionName": "ver 0.2",
-      "versionNumber": "0.2.3.NEXT"
+      "versionNumber": "0.2.4.NEXT"
     }
   ],
   "name": "Trackland Google Connect",
@@ -28,6 +28,7 @@
     "Trackland Google Connect@0.2.0-1": "04tRQ00000009zNYAQ",
     "Trackland Google Connect@0.2.1-1": "04tRQ0000000A0zYAE",
     "Trackland Google Connect@0.2.2-1": "04tRQ0000000A2bYAE",
-    "Trackland Google Connect@0.2.3-1": "04tRQ0000000A5pYAE"
+    "Trackland Google Connect@0.2.3-1": "04tRQ0000000A5pYAE",
+    "Trackland Google Connect@0.2.4-1": "04tRQ0000000ASPYA2"
   }
 }

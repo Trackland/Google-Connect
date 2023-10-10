@@ -112,5 +112,20 @@ public class GenericConnectorController {
     }
   }
 
+  public class TokenManagement implements Queueable, Database.AllowsCallouts{
+    String tokenId;
+
+    public TokenManagement(String tokenId){
+      this.tokenId = tokenId;
+    }
+
+    public void execute(QueueableContext context){
+      Google_Token__c token = [SELECT Id, Access_Token__c, Refresh_Token__c, Expires_In__c FROM Google_Token__c WHERE Id = :this.tokenId];
+      if(token.Expires_In__c > DateTime.now().addSeconds(60)) return;
+      token = GenericConnectorController.doRefreshTokenStatic(token);
+      update token;
+    }
+  }
+
   public class ErrorException extends Exception {}
 }
