@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Sync_Calendars</name>
+        <label>Sync Calendars</label>
+        <locationX>264</locationX>
+        <locationY>350</locationY>
+        <actionName>TL_CalendarActions</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>sync_all</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>tokens</name>
+            <value>
+                <elementReference>sync_all</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <environments>Default</environments>
+    <interviewLabel>Sync Calendars {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Sync Calendars</label>
+    <loops>
+        <name>sync_all</name>
+        <label>sync all</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <collectionReference>tokens</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Sync_Calendars</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>tokens</name>
+        <label>tokens</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>sync_all</targetReference>
+        </connector>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Google_Token__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>tokens</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+</Flow>
